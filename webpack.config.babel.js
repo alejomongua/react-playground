@@ -1,6 +1,7 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 
 export default {
     entry: './src/index.js',
@@ -59,13 +60,28 @@ export default {
     }
   },
   devServer: {
-    contentBase: './dist'
+      contentBase: './dist',
+      watchOptions: {
+	  ignored: [
+	      '**/*~',
+	      '**/\.#*'
+	  ]
+      },
   },
   plugins: [
     new HtmlWebpackPlugin({
-      appMountId: 'app',
+	template: 'src/index.html',
+	favicon: 'src/favicon.ico',
       filename: 'index.html'
     }),
-    new MiniCssExtractPlugin()
+      new MiniCssExtractPlugin(),
+      new CopyWebpackPlugin({
+	  patterns: [
+	      {
+		  context: `${__dirname}/src/public`,
+		  from: `*.*`
+	      }
+	  ]
+      })
   ]
 };

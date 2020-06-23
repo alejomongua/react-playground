@@ -38,6 +38,7 @@
     "@babel/register": "^7.10.3",
     "@hot-loader/react-dom": "^16.13.0",
     "babel-loader": "^8.1.0",
+    "copy-webpack-plugin": "^6.0.2",
     "css-loader": "^3.6.0",
     "eslint": "^7.3.0",
     "eslint-plugin-react": "^7.20.0",
